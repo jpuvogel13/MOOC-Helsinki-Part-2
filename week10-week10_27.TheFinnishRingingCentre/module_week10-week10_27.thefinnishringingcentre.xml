@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_week10-week10_27.thefinnishringingcentre" default="compile.module.week10-week10_27.thefinnishringingcentre">
+  <dirname property="module.week10-week10_27.thefinnishringingcentre.basedir" file="${ant.file.module_week10-week10_27.thefinnishringingcentre}"/>
+  
+  <property name="module.jdk.home.week10-week10_27.thefinnishringingcentre" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.week10-week10_27.thefinnishringingcentre" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.week10-week10_27.thefinnishringingcentre" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.week10-week10_27.thefinnishringingcentre" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="week10-week10_27.thefinnishringingcentre.output.dir" value="${module.week10-week10_27.thefinnishringingcentre.basedir}/out/production/week10-week10_27.TheFinnishRingingCentre"/>
+  <property name="week10-week10_27.thefinnishringingcentre.testoutput.dir" value="${module.week10-week10_27.thefinnishringingcentre.basedir}/out/test/week10-week10_27.TheFinnishRingingCentre"/>
+  
+  <path id="week10-week10_27.thefinnishringingcentre.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="week10-week10_27.thefinnishringingcentre.module.production.classpath">
+    <path refid="${module.jdk.classpath.week10-week10_27.thefinnishringingcentre}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.tmc-junit-runner.classpath"/>
+  </path>
+  
+  <path id="week10-week10_27.thefinnishringingcentre.runtime.production.module.classpath">
+    <pathelement location="${week10-week10_27.thefinnishringingcentre.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.tmc-junit-runner.classpath"/>
+  </path>
+  
+  <path id="week10-week10_27.thefinnishringingcentre.module.classpath">
+    <path refid="${module.jdk.classpath.week10-week10_27.thefinnishringingcentre}"/>
+    <pathelement location="${week10-week10_27.thefinnishringingcentre.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.tmc-junit-runner.classpath"/>
+  </path>
+  
+  <path id="week10-week10_27.thefinnishringingcentre.runtime.module.classpath">
+    <pathelement location="${week10-week10_27.thefinnishringingcentre.testoutput.dir}"/>
+    <pathelement location="${week10-week10_27.thefinnishringingcentre.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.tmc-junit-runner.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.week10-week10_27.thefinnishringingcentre">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.week10-week10_27.thefinnishringingcentre">
+    <patternset refid="excluded.from.module.week10-week10_27.thefinnishringingcentre"/>
+  </patternset>
+  
+  <path id="week10-week10_27.thefinnishringingcentre.module.sourcepath">
+    <dirset dir="${module.week10-week10_27.thefinnishringingcentre.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="week10-week10_27.thefinnishringingcentre.module.test.sourcepath">
+    <dirset dir="${module.week10-week10_27.thefinnishringingcentre.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.week10-week10_27.thefinnishringingcentre" depends="compile.module.week10-week10_27.thefinnishringingcentre.production,compile.module.week10-week10_27.thefinnishringingcentre.tests" description="Compile module week10-week10_27.TheFinnishRingingCentre"/>
+  
+  <target name="compile.module.week10-week10_27.thefinnishringingcentre.production" depends="register.custom.compilers" description="Compile module week10-week10_27.TheFinnishRingingCentre; production classes">
+    <mkdir dir="${week10-week10_27.thefinnishringingcentre.output.dir}"/>
+    <javac2 destdir="${week10-week10_27.thefinnishringingcentre.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.week10-week10_27.thefinnishringingcentre}/javac">
+      <compilerarg line="${compiler.args.week10-week10_27.thefinnishringingcentre}"/>
+      <bootclasspath refid="week10-week10_27.thefinnishringingcentre.module.bootclasspath"/>
+      <classpath refid="week10-week10_27.thefinnishringingcentre.module.production.classpath"/>
+      <src refid="week10-week10_27.thefinnishringingcentre.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.week10-week10_27.thefinnishringingcentre"/>
+    </javac2>
+    
+    <copy todir="${week10-week10_27.thefinnishringingcentre.output.dir}">
+      <fileset dir="${module.week10-week10_27.thefinnishringingcentre.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.week10-week10_27.thefinnishringingcentre.tests" depends="register.custom.compilers,compile.module.week10-week10_27.thefinnishringingcentre.production" description="compile module week10-week10_27.TheFinnishRingingCentre; test classes" unless="skip.tests">
+    <mkdir dir="${week10-week10_27.thefinnishringingcentre.testoutput.dir}"/>
+    <javac2 destdir="${week10-week10_27.thefinnishringingcentre.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.week10-week10_27.thefinnishringingcentre}/javac">
+      <compilerarg line="${compiler.args.week10-week10_27.thefinnishringingcentre}"/>
+      <bootclasspath refid="week10-week10_27.thefinnishringingcentre.module.bootclasspath"/>
+      <classpath refid="week10-week10_27.thefinnishringingcentre.module.classpath"/>
+      <src refid="week10-week10_27.thefinnishringingcentre.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.week10-week10_27.thefinnishringingcentre"/>
+    </javac2>
+    
+    <copy todir="${week10-week10_27.thefinnishringingcentre.testoutput.dir}">
+      <fileset dir="${module.week10-week10_27.thefinnishringingcentre.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.week10-week10_27.thefinnishringingcentre" description="cleanup module">
+    <delete dir="${week10-week10_27.thefinnishringingcentre.output.dir}"/>
+    <delete dir="${week10-week10_27.thefinnishringingcentre.testoutput.dir}"/>
+  </target>
+</project>
